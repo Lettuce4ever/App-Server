@@ -77,3 +77,9 @@ insert into Games values (20, 8, '09-25-2024', 10, 5, 'Shalgon', 'TAMUDA123')
 
 
 
+
+--EF Code
+/*
+scaffold-DbContext "Server = (localdb)\MSSQLLocalDB;Initial Catalog=MyAppName_DB;User ID=TaskAdminLogin;Password=DBGalPass;" Microsoft.EntityFrameworkCore.SqlServer -OutPutDir Models -Context TamiDBContext -DataAnnotations -force
+*/
+
