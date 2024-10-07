@@ -19,18 +19,25 @@ TypeName nvarchar(20) -- שם הסוג
 -- מנהל 2
 );
 
+select * from UserType  
+
 
 -- יצירת טבלת משתמשים
 Create Table Users (
 Username nvarchar(16) Primary key, -- שם משתמש
 Email nvarchar(60) unique, -- אימייל
-Password nvarchar(16), -- סיסמה
+UserPassword nvarchar(16), -- סיסמה
 FirstName nvarchar(30), -- שם פרטי
 LastName nvarchar(30), -- שם משפחה
 Score int, -- ניקוד
 GamesPlayed int, -- מספר משחקים ששוחקו
+--TypeID doesn't exist in the Users table
+--Foreign Key (TypeID) References UserType(TypeID) -- סוג משתמש
+TypeID Int, -- סוג משתמש
 Foreign Key (TypeID) References UserType(TypeID) -- סוג משתמש
 );
+
+SELECT * FROM Users
 
 -- יצירת טבלת משחקים
 Create Table Games (
@@ -40,19 +47,29 @@ TurnsAmount int, -- כמות תורות במשחק
 Date date, -- התאריך של המשחק
 PointsGained int, -- כמות נקודות שהושגו מהמשחק
 PointsLost int, -- כמות נקודות שאבדו מהמשחק
+
+--Winner doesn't exist in the Games table
+--Loser doesn't exist in the Games table
+Winner nvarchar(16), -- מנצח
+Loser nvarchar(16), -- מפסיד
+
 Foreign Key (Winner) References Users(Username), -- המנצח של המשחק
 Foreign Key (Loser) References Users(Username) -- המפסיד של המשחק
 );
+
+SELECT * FROM Games
 
 --יצירת טבלת קלפים
 Create Table Cards (
 CardID int Primary Key Identity, -- מספר סידורי 
 CardImage VarBinary(Max), -- תמונה של הקלף
-Description nvarchar(300), -- תיאור הקלף
+CardDescription nvarchar(300), -- תיאור הקלף
 Rules nvarchar(300), -- חוקי קלף
 )
 
--- צור הירשמות ללא גלוטן
+SELECT * FROM Cards
+
+-- צור הירשמות 
 CREATE LOGIN [TaskAdminLogin] WITH PASSWORD = 'DBGalPass';
 Go
 
@@ -75,11 +92,11 @@ insert into Users values ('Shalgon', 'shshalgi@gmail.com', 'shahar4532', 'Shahar
 
 insert into Games values (20, 8, '09-25-2024', 10, 5, 'Shalgon', 'TAMUDA123')
 
-
-
+select * from UserType
+select * from Users
+select * from Games
 
 --EF Code
 /*
-scaffold-DbContext "Server = (localdb)\MSSQLLocalDB;Initial Catalog=MyAppName_DB;User ID=TaskAdminLogin;Password=DBGalPass;" Microsoft.EntityFrameworkCore.SqlServer -OutPutDir Models -Context TamiDBContext -DataAnnotations -force
+scaffold-DbContext "Server = (localdb)\MSSQLLocalDB;Initial Catalog=Game_DB;User ID=TaskAdminLogin;Password=DBGalPass;" Microsoft.EntityFrameworkCore.SqlServer -OutPutDir Models -Context GameDbContext -DataAnnotations -force
 */
-
