@@ -1,14 +1,14 @@
-﻿﻿Use master
-Go
-IF EXISTS (SELECT * FROM sys.databases WHERE name = N'Game_DB')
-BEGIN
-    DROP DATABASE Game_DB;
-END
-Go
-Create Database Game_DB
-Go
-Use Game_DB
-Go
+﻿--﻿Use master
+--Go
+--IF EXISTS (SELECT * FROM sys.databases WHERE name = N'Game_DB')
+--BEGIN
+--DROP DATABASE Game_DB;
+--END
+--Go
+--Create Database Game_DB
+--Go
+--Use Game_DB
+--Go
 
 -- יצירת טבלת סוגי משתמש
 Create Table UserType (
