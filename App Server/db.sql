@@ -31,8 +31,6 @@ FirstName nvarchar(30), -- שם פרטי
 LastName nvarchar(30), -- שם משפחה
 Score int, -- ניקוד
 GamesPlayed int, -- מספר משחקים ששוחקו
---TypeID doesn't exist in the Users table
---Foreign Key (TypeID) References UserType(TypeID) -- סוג משתמש
 TypeID Int, -- סוג משתמש
 Foreign Key (TypeID) References UserType(TypeID) -- סוג משתמש
 );
