@@ -16,8 +16,6 @@ namespace App_Server.DTO
         public int? Score { get; set; }
         public int? GamesPlayed { get; set; }
         public int? TypeId { get; set; }
-        public virtual ICollection<Game> GameLoserNavigations { get; set; } = new List<Game>();
-        public virtual ICollection<Game> GameWinnerNavigations { get; set; } = new List<Game>();
 
         public UserDTO() { }
         public UserDTO(Models.User useri)
